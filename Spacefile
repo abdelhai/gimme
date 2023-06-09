@@ -1,0 +1,20 @@
+# Spacefile Docs: https://go.deta.dev/docs/spacefile/v0
+v: 0
+app_name: gimme
+icon: icon.png
+micros:
+  - name: main
+    src: .
+    engine: python3.9
+    primary: true
+    provide_actions: true
+    public_routes:
+      - "/i/*"
+    run: uvicorn main:app
+    dev: uvicorn main:app --reload
+    presets:
+      env:
+        - name: OPEN_API_KEY
+          description: OpenAI api key from https://platform.openai.com/account/api-keys
+        - name: BLACKHOLE
+          description: blackhole integration url (optional)
